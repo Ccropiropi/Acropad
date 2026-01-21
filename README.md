@@ -13,43 +13,26 @@
 
 ## Installation
 
-### Option 1: Download Binary (Linux)
-Go to the [Releases](https://github.com/Ccropiropi/Acropad/releases) page and download the latest `acropad` executable.
+### Downloads
+We automatically build Acropad for **Windows, macOS, and Linux**. 
+Go to the [Actions Tab](https://github.com/Ccropiropi/Acropad/actions) (click the latest run -> "Artifacts") or check the [Releases Page](https://github.com/Ccropiropi/Acropad/releases) for the latest binaries.
+
+### Manual Build (Linux)
+If you prefer to build from source:
 ```bash
-chmod +x acropad
-./acropad
+# Clone and setup
+git clone https://github.com/Ccropiropi/Acropad.git
+cd Acropad
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Run
+python src/main.py
+
+# Build Binary
+./build.sh
 ```
-
-### Option 2: Build from Source
-
-**Prerequisites:**
-- Python 3.10+
-- `pip`
-
-**Steps:**
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Ccropiropi/Acropad.git
-   cd Acropad
-   ```
-
-2. Create a virtual environment and install dependencies:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
-   ```
-
-3. Run the application:
-   ```bash
-   python src/main.py
-   ```
-
-4. (Optional) Build standalone binary:
-   ```bash
-   ./build.sh
-   # Binary will be in dist/acropad
-   ```
 
 ## Usage
 

@@ -1,0 +1,56 @@
+name: Build Acropad
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'pip'
+
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install pyinstaller
+
+    # Linux Build
+    - name: Build (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        chmod +x build.sh
+        ./build.sh
+        mv dist/acropad dist/acropad-linux-x86_64
+
+    # Windows Build
+    - name: Build (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad-windows" --hidden-import "PyQt6.QtWebEngineCore" --collect-all "markdown" src/main.py
+
+    # macOS Build
+    - name: Build (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad-macos" --hidden-import "PyQt6.QtWebEngineCore" --collect-all "markdown" src/main.py
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: acropad-${{ matrix.os }}
+        path: dist/*
+        if-no-files-found: error
