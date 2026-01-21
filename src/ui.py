@@ -3,11 +3,11 @@ import sys
 import logging
 from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter, 
-    QPlainTextEdit, QTreeView, QFileSystemModel, QFileDialog, 
+    QPlainTextEdit, QTreeView, QFileDialog, 
     QMessageBox, QLabel, QLineEdit, QPushButton
 )
 from PyQt6.QtCore import Qt, QDir, QTimer, QUrl
-from PyQt6.QtGui import QAction, QIcon, QFont, QColor, QPalette
+from PyQt6.QtGui import QAction, QIcon, QFont, QColor, QPalette, QFileSystemModel
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 
 from .renderer import render_markdown
@@ -45,17 +45,41 @@ class AcropadWindow(QMainWindow):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         main_layout = QHBoxLayout(central_widget)
-        main_layout.setContentsMargins(0, 0, 0, 0)
-        main_layout.setSpacing(0)
+        main_layout.setContentsMargins(10, 10, 10, 10) # Added padding
+        main_layout.setSpacing(10) # Spacing between sidebar and editor
 
         # Splitter
         splitter = QSplitter(Qt.Orientation.Horizontal)
+        splitter.setHandleWidth(2)
+        splitter.setStyleSheet("QSplitter::handle { background-color: #404040; }")
         main_layout.addWidget(splitter)
 
         # Sidebar (File Explorer)
         self.sidebar_widget = QWidget()
+        self.sidebar_widget.setStyleSheet("background-color: #0a0a0a; border-radius: 8px;")
         sidebar_layout = QVBoxLayout(self.sidebar_widget)
-        sidebar_layout.setContentsMargins(0, 0, 0, 0)
+        sidebar_layout.setContentsMargins(10, 10, 10, 10)
+        sidebar_layout.setSpacing(10)
+        
+        # New Note Button
+        self.new_note_btn = QPushButton("+ New Note")
+        self.new_note_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.new_note_btn.clicked.connect(self.create_new_note)
+        self.new_note_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #2563EB;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 8px;
+                font-weight: bold;
+                text-align: center;
+            }
+            QPushButton:hover {
+                background-color: #1D4ED8;
+            }
+        """)
+        sidebar_layout.addWidget(self.new_note_btn)
         
         # Search/Filter (Placeholder)
         self.search_bar = QLineEdit()
@@ -184,6 +208,34 @@ class AcropadWindow(QMainWindow):
                 logging.info(f"Auto-saved: {self.current_file}")
             except Exception as e:
                 logging.error(f"Failed to save {self.current_file}: {e}")
+
+    def create_new_note(self):
+        import time
+        filename = f"Untitled-{int(time.time())}.md"
+        filepath = os.path.join(self.base_dir, filename)
+        
+        try:
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write("# New Note\n\nStart writing here...")
+            
+            logging.info(f"Created new note: {filepath}")
+            
+            # Select and Open the new file
+            # We need to wait a bit for the filesystem watcher to pick it up (or force refresh)
+            # For simplicity, we just manually load it if it exists
+            index = self.file_model.index(filepath)
+            if index.isValid():
+                self.tree_view.setCurrentIndex(index)
+                self.on_file_clicked(index)
+            else:
+                # If fs model hasn't updated yet, just open it directly
+                self.current_file = filepath
+                self.filename_label.setText(filename)
+                self.editor.setPlainText("# New Note\n\nStart writing here...")
+                self.update_preview()
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to create note: {e}")
 
     def closeEvent(self, event):
         self.save_current_file()
