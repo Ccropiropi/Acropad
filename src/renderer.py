@@ -67,7 +67,7 @@ HTML_TEMPLATE = """
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    {content}
+    %CONTENT%
 </body>
 </html>
 """
@@ -79,4 +79,4 @@ def render_markdown(text):
     html_content = markdown.markdown(text, extensions=['fenced_code', 'tables'])
     
     # Wrap in full HTML document with styling and MathJax
-    return HTML_TEMPLATE.format(content=html_content)
+    return HTML_TEMPLATE.replace("%CONTENT%", html_content)

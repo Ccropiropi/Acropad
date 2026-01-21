@@ -10,7 +10,7 @@ from PyQt6.QtCore import Qt, QDir, QTimer, QUrl
 from PyQt6.QtGui import QAction, QIcon, QFont, QColor, QPalette, QFileSystemModel
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 
-from .renderer import render_markdown
+from renderer import render_markdown
 
 class Editor(QPlainTextEdit):
     def __init__(self):

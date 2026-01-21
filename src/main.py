@@ -3,10 +3,15 @@ import os
 import logging
 from PyQt6.QtWidgets import QApplication
 
-# Add project root to sys.path to ensure imports work
-project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Add project root and src to sys.path to ensure imports work
+file_path = os.path.abspath(__file__)
+project_root = os.path.dirname(os.path.dirname(file_path))
+src_path = os.path.dirname(file_path)
+
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
+if src_path not in sys.path:
+    sys.path.insert(0, src_path)
 
 # Configure Logging
 logging.basicConfig(
@@ -24,7 +29,7 @@ def exception_hook(exctype, value, traceback):
 
 sys.excepthook = exception_hook
 
-from src.ui import AcropadWindow
+from ui import AcropadWindow
 
 def main():
     logging.info("Starting Acropad...")
