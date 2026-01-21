@@ -1,8 +1,9 @@
-name: Build Acropad
+name: Build and Release
 
 on:
   push:
     branches: [ "main" ]
+    tags: [ "v*" ]
   workflow_dispatch:
 
 jobs:
@@ -32,25 +33,53 @@ jobs:
     - name: Build (Linux)
       if: runner.os == 'Linux'
       run: |
-        chmod +x build.sh
-        ./build.sh
+        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad" --hidden-import "PyQt6.QtWebEngineCore" --collect-all "markdown" main.py
         mv dist/acropad dist/acropad-linux-x86_64
 
     # Windows Build
     - name: Build (Windows)
       if: runner.os == 'Windows'
       run: |
-        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad-windows" --hidden-import "PyQt6.QtWebEngineCore" --collect-all "markdown" src/main.py
+        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad" --hidden-import "PyQt6.QtWebEngineCore" --collect-all "markdown" main.py
+        Move-Item -Path dist\acropad.exe -Destination dist\acropad-windows-x86_64.exe
 
     # macOS Build
     - name: Build (macOS)
       if: runner.os == 'macOS'
       run: |
-        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad-macos" --hidden-import "PyQt6.QtWebEngineCore" --collect-all "markdown" src/main.py
+        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad" --hidden-import "PyQt6.QtWebEngineCore" --collect-all "markdown" main.py
+        mv dist/acropad.app/Contents/MacOS/acropad dist/acropad-macos-x86_64
+        # Also zip the .app bundle for standard macOS distro
+        cd dist && zip -r acropad-macos-app.zip acropad.app
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: acropad-${{ matrix.os }}
-        path: dist/*
+        path: dist/acropad-*
         if-no-files-found: error
+
+  release:
+    name: Create Release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Display Downloaded Files
+        run: ls -R artifacts
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: artifacts/*
+          draft: false
+          prerelease: false
+          generate_release_notes: true
