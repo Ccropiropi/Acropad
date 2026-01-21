@@ -16,10 +16,9 @@ rm -rf build dist
 # --clean: Clean cache
 pyinstaller --noconfirm --onefile --windowed --clean \
     --name "acropad" \
-    --paths "src" \
     --hidden-import "PyQt6.QtWebEngineCore" \
     --collect-all "markdown" \
-    src/main.py
+    main.py
 
 echo "Build complete. Binary is in dist/acropad"
 chmod +x dist/acropad
