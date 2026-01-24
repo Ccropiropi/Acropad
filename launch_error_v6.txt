@@ -1,0 +1,28 @@
+2026-01-21 09:09:13,728 - INFO - Starting Acropad...
+2026-01-21 09:09:14,140 - INFO - UI Initialized with root: /home/zrain/Project/Acropad/notes
+2026-01-21 09:09:14,739 - INFO - Window shown successfully.
+2026-01-21 09:09:19,133 - INFO - Created new note: /home/zrain/Project/Acropad/notes/Untitled-1768961359.md
+2026-01-21 09:09:19,282 - INFO - Opened file: /home/zrain/Project/Acropad/notes/Untitled-1768961359.md
+js: Uncaught SyntaxError: Unexpected token ')'
+js: Uncaught SyntaxError: Unexpected token ')'
+2026-01-21 09:09:24,353 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768961359.md
+js: Uncaught SyntaxError: Unexpected token ')'
+2026-01-21 09:09:26,349 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768961359.md
+js: Uncaught SyntaxError: Unexpected token ')'
+js: Uncaught SyntaxError: Unexpected token ')'
+2026-01-21 09:09:28,349 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768961359.md
+js: Uncaught SyntaxError: Unexpected token ')'
+2026-01-21 09:09:30,349 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768961359.md
+js: Uncaught SyntaxError: Unexpected token ')'
+js: Uncaught SyntaxError: Unexpected token ')'
+2026-01-21 09:09:32,352 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768961359.md
+js: Uncaught SyntaxError: Unexpected token ')'
+2026-01-21 09:09:34,349 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768961359.md
+js: Uncaught SyntaxError: Unexpected token ')'
+2026-01-21 09:09:36,349 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768961359.md
+js: Uncaught SyntaxError: Unexpected token ')'
+2026-01-21 09:09:38,349 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768961359.md
+js: Uncaught SyntaxError: Unexpected token ')'
+2026-01-21 09:09:40,350 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768961359.md
+js: Uncaught SyntaxError: Unexpected token ')'
+2026-01-21 09:09:42,349 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768961359.md

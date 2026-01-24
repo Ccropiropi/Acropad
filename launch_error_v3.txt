@@ -1,0 +1,12 @@
+2026-01-21 08:56:52,715 - CRITICAL - Uncaught exception
+Traceback (most recent call last):
+  File "main.py", line 32, in <module>
+  File "pyimod02_importers.py", line 457, in exec_module
+  File "ui.py", line 13, in <module>
+ModuleNotFoundError: No module named 'renderer'
+Traceback (most recent call last):
+  File "main.py", line 32, in <module>
+  File "pyimod02_importers.py", line 457, in exec_module
+  File "ui.py", line 13, in <module>
+ModuleNotFoundError: No module named 'renderer'
+[PYI-48215:ERROR] Failed to execute script 'main' due to unhandled exception!

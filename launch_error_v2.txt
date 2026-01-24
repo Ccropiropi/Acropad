@@ -1,0 +1,132 @@
+2026-01-21 08:44:06,010 - INFO - Starting Acropad...
+2026-01-21 08:44:06,477 - INFO - UI Initialized with root: /home/zrain/Project/Acropad/notes
+2026-01-21 08:44:08,556 - INFO - Window shown successfully.
+2026-01-21 08:44:11,317 - INFO - Created new note: /home/zrain/Project/Acropad/notes/Untitled-1768959851.md
+2026-01-21 08:44:11,412 - ERROR - Failed to open file /home/zrain/Project/Acropad/notes/Untitled-1768959851.md: ' \n            font-family'
+2026-01-21 08:44:11,678 - CRITICAL - Uncaught exception
+Traceback (most recent call last):
+  File "ui.py", line 186, in on_file_clicked
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+Traceback (most recent call last):
+  File "ui.py", line 186, in on_file_clicked
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+2026-01-21 08:44:24,949 - CRITICAL - Uncaught exception
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+2026-01-21 08:44:26,349 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768959851.md
+2026-01-21 08:44:26,635 - CRITICAL - Uncaught exception
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+2026-01-21 08:44:27,550 - CRITICAL - Uncaught exception
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+2026-01-21 08:44:28,060 - CRITICAL - Uncaught exception
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+2026-01-21 08:44:28,349 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768959851.md
+2026-01-21 08:44:28,565 - CRITICAL - Uncaught exception
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+2026-01-21 08:44:29,551 - CRITICAL - Uncaught exception
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+2026-01-21 08:44:30,349 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768959851.md
+2026-01-21 08:44:31,034 - CRITICAL - Uncaught exception
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+2026-01-21 08:44:31,950 - CRITICAL - Uncaught exception
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+2026-01-21 08:44:32,349 - INFO - Auto-saved: /home/zrain/Project/Acropad/notes/Untitled-1768959851.md
+2026-01-21 08:44:37,319 - ERROR - Failed to open file /home/zrain/Project/Acropad/notes/Untitled-1768959851.md: ' \n            font-family'
+2026-01-21 08:44:37,636 - CRITICAL - Uncaught exception
+Traceback (most recent call last):
+  File "ui.py", line 186, in on_file_clicked
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+Traceback (most recent call last):
+  File "ui.py", line 186, in on_file_clicked
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "ui.py", line 197, in update_preview
+  File "renderer.py", line 82, in render_markdown
+KeyError: ' \n            font-family'

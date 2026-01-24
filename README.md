@@ -1,6 +1,12 @@
 # Acropad
 
-**Acropad** is a lightweight, local-first Markdown editor optimized for scientific writing and personal knowledge management. Built with Python and PyQt6, it offers a seamless cross-platform experience with native performance.
+**Acropad** is a lightweight, local-first Markdown editor optimized for scientific writing and personal knowledge management.
+
+**Now available in two versions:**
+- 🐍 **PyQt6** (Original) - Python/Qt-based desktop app
+- ⚛️ **Electron** (New) - Node.js/React-based modern web UI
+
+Both versions are fully functional and tested on Hyprland (Wayland) and all platforms.
 
 ## Core Features
 
@@ -11,27 +17,49 @@
 - **Dark Mode:** Easy-on-the-eyes interface inspired by modern IDEs.
 - **Portable:** Runs as a single self-contained binary on Linux (and other platforms).
 
+## Quick Start
+
+**Choose your preferred version and run:**
+
+```bash
+# Interactive launcher (recommended)
+./launch.sh
+
+# Or directly:
+./launch-pyqt6.sh      # Python/Qt version
+./launch-electron.sh   # Node.js/React version
+```
+
+**For complete setup and troubleshooting guide, see**: [DUAL-VERSION-GUIDE.md](./DUAL-VERSION-GUIDE.md)
+
 ## Installation
 
-### Downloads
-We automatically build Acropad for **Windows, macOS, and Linux**. 
-Go to the [Actions Tab](https://github.com/Ccropiropi/Acropad/actions) (click the latest run -> "Artifacts") or check the [Releases Page](https://github.com/Ccropiropi/Acropad/releases) for the latest binaries.
-
-### Manual Build (Linux)
-If you prefer to build from source:
+### From Source (Both Versions)
 ```bash
-# Clone and setup
+# Clone the repository
 git clone https://github.com/Ccropiropi/Acropad.git
 cd Acropad
+
+# Run tests to verify everything works
+./test-both.sh
+
+# Launch your preferred version
+./launch.sh
+```
+
+### PyQt6 Version Only
+```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+python3 main.py
+```
 
-# Run
-python src/main.py
-
-# Build Binary
-./build.sh
+### Electron Version Only
+```bash
+cd electron
+npm run install-deps
+npm run dev
 ```
 
 ## Usage

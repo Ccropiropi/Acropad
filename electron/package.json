@@ -1,0 +1,34 @@
+{
+  "name": "acropad-electron",
+  "version": "1.0.0",
+  "description": "Acropad - A lightweight Markdown editor with LaTeX support",
+  "main": "main/main.js",
+  "homepage": "./",
+  "scripts": {
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "cd backend && node server.js",
+    "frontend": "cd frontend && npm start",
+    "start": "electron .",
+    "build": "cd frontend && npm run build && electron-builder",
+    "test": "cd backend && npm test",
+    "install-deps": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.6.4",
+    "concurrently": "^8.2.0"
+  },
+  "build": {
+    "appId": "com.acropad.app",
+    "productName": "Acropad",
+    "files": [
+      "main/main.js",
+      "frontend/build/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  }
+}

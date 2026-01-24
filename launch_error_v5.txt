@@ -1,0 +1,16 @@
+2026-01-21 09:03:57,121 - CRITICAL - Uncaught exception
+Traceback (most recent call last):
+  File "main.py", line 22, in <module>
+    from ui import AcropadWindow
+  File "pyimod02_importers.py", line 457, in exec_module
+  File "ui.py", line 13, in <module>
+    from renderer import render_markdown
+ModuleNotFoundError: No module named 'renderer'
+Traceback (most recent call last):
+  File "main.py", line 22, in <module>
+    from ui import AcropadWindow
+  File "pyimod02_importers.py", line 457, in exec_module
+  File "ui.py", line 13, in <module>
+    from renderer import render_markdown
+ModuleNotFoundError: No module named 'renderer'
+[PYI-55032:ERROR] Failed to execute script 'main' due to unhandled exception!

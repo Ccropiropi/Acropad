@@ -1,0 +1,5 @@
+/home/zrain/Project/Acropad/src/renderer.py:62: SyntaxWarning: invalid escape sequence '\('
+  inlineMath: [['$', '$'], ['\(', '\)']],
+2026-01-21 08:21:05,838 - INFO - Starting Acropad...
+2026-01-21 08:21:06,311 - INFO - UI Initialized with root: /home/zrain/Project/Acropad/notes
+2026-01-21 08:21:08,782 - INFO - Window shown successfully.

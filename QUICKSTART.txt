@@ -1,0 +1,108 @@
+╔════════════════════════════════════════════════════════════════╗
+║                                                                ║
+║         🎯 ACROPAD - QUICK START GUIDE                        ║
+║                                                                ║
+║  A lightweight Markdown editor with LaTeX support             ║
+║  Now available in TWO versions: PyQt6 & Electron              ║
+║                                                                ║
+╚════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 LAUNCH THE APP (Choose One)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Interactive Menu (Recommended):
+   $ ./launch.sh
+
+2. PyQt6 Version (Python/Qt):
+   $ ./launch-pyqt6.sh
+
+3. Electron Version (Node.js/React):
+   $ ./launch-electron.sh
+
+4. Run Tests:
+   $ ./test-both.sh
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📚 DOCUMENTATION (Read These)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Quick Overview:
+  → README.md
+
+Complete Setup Guide:
+  → DUAL-VERSION-GUIDE.md
+
+Platform-Specific Help (Windows/Mac/Linux):
+  → PLATFORM-SUPPORT.md
+
+What Was Completed:
+  → COMPLETION-SUMMARY.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ STATUS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Platform: Hyprland (Wayland) on Arch Linux
+Python: 3.13.11 ✓
+Node.js: v25.2.1 ✓
+npm: 11.7.0 ✓
+
+PyQt6 Version:     ✓ READY
+Electron Version:  ✓ READY
+All Tests:         ✓ PASSED
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 FEATURES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Split-view Markdown editor
+✓ Live preview with syntax highlighting
+✓ LaTeX/MathJax support ($$E=mc^2$$)
+✓ Auto-save (every 2 seconds)
+✓ File browser sidebar
+✓ Create new notes
+✓ Dark theme UI
+✓ Works on Hyprland (Wayland)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 QUICK TIPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Both versions share the same "notes/" directory
+2. You can run both versions at the same time
+3. Use PyQt6 for simplicity, Electron for development
+4. All files are saved as plain text Markdown (.md)
+5. Test suite runs in ~30 seconds
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🆘 HELP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Something doesn't work?
+
+1. Run tests:
+   $ ./test-both.sh
+
+2. Check logs:
+   $ cat acropad.log         (PyQt6)
+   $ cat test-results.log    (All tests)
+
+3. Read platform guide:
+   $ cat PLATFORM-SUPPORT.md
+
+4. Try the other version:
+   If PyQt6 fails, try Electron (and vice versa)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ready to start? Type:
+  $ ./launch.sh
+
+Then choose your preferred version!
+
+╔════════════════════════════════════════════════════════════════╗
+║  Status: ✅ READY TO USE                                      ║
+║  Platform: Hyprland (Wayland) on Arch Linux                   ║
+║  Both PyQt6 & Electron versions fully tested                  ║
+╚════════════════════════════════════════════════════════════════╝
