@@ -1,8 +1,0 @@
-2026-01-21 09:00:25,249 - CRITICAL - Uncaught exception
-Traceback (most recent call last):
-  File "main.py", line 32, in <module>
-ModuleNotFoundError: No module named 'renderer'
-Traceback (most recent call last):
-  File "main.py", line 32, in <module>
-ModuleNotFoundError: No module named 'renderer'
-[PYI-52133:ERROR] Failed to execute script 'main' due to unhandled exception!
