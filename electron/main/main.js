@@ -6,8 +6,8 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    width: 1400,
+    height: 900,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
@@ -28,7 +28,7 @@ function createWindow() {
 }
 
 // Handle window closed
-mainWindow.on('closed', () => {
+mainWindow?.on('closed', () => {
   mainWindow = null;
 });
 
@@ -49,14 +49,41 @@ app.on('activate', () => {
 
 // IPC Handlers
 ipcMain.handle('get-notes-dir', () => {
-  return path.join(app.getPath('userData'), 'notes');
+  const userDataPath = app.getPath('userData');
+  return path.join(userDataPath, 'notes');
 });
 
 ipcMain.handle('open-file-dialog', async () => {
   const { dialog } = require('electron');
+  if (!mainWindow) throw new Error('Main window not available');
+  
   const result = await dialog.showOpenDialog(mainWindow, {
     properties: ['openFile'],
-    filters: [{ name: 'Markdown', extensions: ['md', 'txt'] }]
+    filters: [
+      { name: 'Markdown', extensions: ['md'] },
+      { name: 'Text', extensions: ['txt'] },
+      { name: 'All Files', extensions: ['*'] }
+    ]
   });
   return result;
 });
+
+ipcMain.handle('open-folder-dialog', async () => {
+  const { dialog } = require('electron');
+  if (!mainWindow) throw new Error('Main window not available');
+  
+  const result = await dialog.showOpenDialog(mainWindow, {
+    properties: ['openDirectory']
+  });
+  return result;
+});
+
+// Error handling
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+});
+
+ipcMain.on('error', (event, error) => {
+  console.error('Renderer error:', error);
+});
+

@@ -1,8 +1,55 @@
 const MarkdownIt = require('markdown-it');
+const hljs = require('highlight.js');
+
 const md = new MarkdownIt({
   html: true,
   linkify: true,
-  typographer: true
+  typographer: true,
+  highlight: function (code, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return '<pre class="hljs"><code>' +
+               hljs.highlight(code, { language: lang, ignoreIllegals: true }).value +
+               '</code></pre>';
+      } catch (__) {}
+    }
+    return '<pre class="hljs"><code>' + md.utils.escapeHtml(code) + '</code></pre>';
+  }
+});
+
+// Rule to handle internal links [[note-name]]
+md.inline.ruler.push('internal_links', function(state, silent) {
+  const pos = state.pos;
+  const max = state.posMax;
+
+  // Check for [[
+  if (pos + 2 >= max) return false;
+  if (state.src.charCodeAt(pos) !== 0x5B) return false; // [
+  if (state.src.charCodeAt(pos + 1) !== 0x5B) return false; // [
+
+  let labelStart = pos + 2;
+  let labelEnd = state.src.indexOf(']]', labelStart);
+
+  if (labelEnd === -1) return false;
+
+  const label = state.src.substring(labelStart, labelEnd);
+  const [noteName, displayText] = label.split('|').map(s => s.trim());
+
+  if (!noteName) return false;
+
+  if (!silent) {
+    let token = state.push('link_open', 'a', 1);
+    token.attrSet('href', '#note/' + encodeURIComponent(noteName));
+    token.attrSet('class', 'internal-link');
+
+    token = state.push('text', '', 0);
+    token.content = displayText || noteName;
+
+    state.push('link_close', 'a', -1);
+  }
+
+  state.pos = labelEnd + 2;
+  return true;
 });
 
 const HTML_TEMPLATE = `<!DOCTYPE html>
@@ -13,6 +60,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
   <style>
     :root {
       --bg-color: #171717;
@@ -49,6 +97,12 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
       border-radius: 4px;
       font-size: 0.9em;
     }
+    .hljs {
+      background: var(--code-bg) !important;
+      padding: 15px !important;
+      border-radius: 8px !important;
+      border: 1px solid var(--border-color) !important;
+    }
     blockquote {
       border-left: 4px solid var(--accent-color);
       margin: 1.5em 0;
@@ -84,6 +138,15 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
     }
     a:hover {
       text-decoration: underline;
+    }
+    a.internal-link {
+      color: #60a5fa;
+      font-weight: 500;
+      border-bottom: 1px dotted #60a5fa;
+    }
+    a.internal-link:hover {
+      background-color: rgba(96, 165, 250, 0.1);
+      border-bottom: 1px solid #60a5fa;
     }
   </style>
   <script>
