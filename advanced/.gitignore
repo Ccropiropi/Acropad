@@ -1,0 +1,61 @@
+# Flutter
+.packages
+.dart_tool/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.lock
+
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+*.exe
+
+# Dart/Flutter specific
+*.iml
+*.class
+*.log
+*.jtrace
+.packages
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.fvm/flutter_sdk
+.env
+.env.defaults
+
+# Local configuration
+pubspec.lock
+
+# Generated files
+lib/generated_plugin_registrant.dart
+
+# iOS-specific
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+
+# macOS-specific
+macos/Flutter/GeneratedPluginRegistrant.swift
+
+# Linux-specific
+linux/flutter/generated_plugins.cmake
+
+# Windows-specific
+windows/flutter/generated_plugins.cmake
+windows/flutter/generated_plugins.props
+windows/flutter/flutter_windows.dll

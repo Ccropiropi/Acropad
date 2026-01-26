@@ -1,0 +1,57 @@
+name: acropad_advanced
+description: A high-performance Obsidian clone built with Flutter and Rust.
+
+publish_to: none
+
+version: 2.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management - BLoC pattern
+  flutter_bloc: ^8.1.3
+  bloc: ^8.1.1
+  equatable: ^2.0.5
+
+  # UI/UX
+  google_fonts: ^6.0.0
+  intl: ^0.19.0
+
+  # File I/O & Path management
+  path: ^1.8.3
+  path_provider: ^2.1.1
+
+  # Native Rust Bridge
+  flutter_rust_bridge: ^2.0.0
+  ffi: ^2.1.0
+
+  # Error Handling & Logging
+  logger: ^2.0.0
+  file_picker: ^10.3.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+  build_runner: ^2.4.0
+
+flutter:
+  uses-material-design: true
+
+  # Assets for UI
+  assets:
+    - assets/images/
+    - assets/icons/
+
+  # Fonts
+  # fonts:
+  #   - family: SourceCodePro
+  #     fonts:
+  #       - asset: assets/fonts/SourceCodePro-Regular.ttf
+  #       - asset: assets/fonts/SourceCodePro-Bold.ttf
+  #         weight: 700

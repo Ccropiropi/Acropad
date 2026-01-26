@@ -1,39 +1,37 @@
-# Environments
-venv/
-env/
+# Node
+node_modules
+dist
+release
+
+# Misc
+*.log
+.DS_Store
 .env
+.env.local
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.cache/
+*.tsbuildinfo
 
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
+venv/
+.venv/
+.acropad_config.json
 
-# Distribution / Build
-build/
-dist/
-*.spec
+# Flutter
+advanced/build/
+advanced/.dart_tool/
+advanced/.flutter-plugins
+advanced/.flutter-plugins-dependencies
+advanced/.pub-cache/
+advanced/.packages
+advanced/pubspec.lock
 
-# Logs
-*.log
-
-# IDEs
-.vscode/
-.idea/
-
-# Local Dev / Logs
-debug.txt
-launch_error*.txt
-FINAL-SUMMARY.txt
-*.log
-
-# Dependencies (recursive)
-**/node_modules/
-**/bower_components/
-
-# System
-.DS_Store
-Thumbs.db
-.gemini/
-
-# User Content
-notes/Untitled*.md
+# Rust
+advanced/native/target/

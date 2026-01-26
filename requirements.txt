@@ -1,12 +1,2 @@
-altgraph==0.17.5
-Markdown==3.10
-packaging==25.0
-Pygments==2.19.2
-pyinstaller==6.18.0
-pyinstaller-hooks-contrib==2026.0
-PyQt6==6.10.2
-PyQt6-Qt6==6.10.1
-PyQt6-WebEngine==6.10.0
-PyQt6-WebEngine-Qt6==6.10.1
-PyQt6_sip==13.11.0
-setuptools==80.9.0
+customtkinter==5.2.2
+packaging
