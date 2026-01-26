@@ -1,48 +1,58 @@
-# Acropad
+# Acropad 📝
 
-Acropad is a modern note-taking application inspired by Obsidian. This repository contains two versions of the application:
+**Acropad** is a versatile, local-first note-taking application inspired by Obsidian. It is designed to be fast, private, and flexible. This repository hosts two distinct implementations of the concept, catering to different development needs and performance requirements.
 
-1.  **Python Version:** A simplified, beginner-friendly desktop app.
-2.  **Advanced Version:** A high-performance, cross-platform app using Flutter and Rust.
+1.  **Acropad (Python Edition):** A lightweight, accessible desktop application built with CustomTkinter.
+2.  **Acropad Advanced (Flutter + Rust):** A high-performance, cross-platform architecture leveraging Flutter for a pixel-perfect UI and Rust for safe, blazing-fast file operations.
 
-## 1. Python Version (Beginner-Friendly)
+---
 
-A pure Python implementation using `CustomTkinter` for a modern dark-mode UI.
+## 🐍 Python Edition
 
-### Features
-- Dark mode UI
-- Vault (Folder) support
-- Markdown/Text file editing
-- Auto-save
+A clean, dark-mode minimalist editor designed for simplicity and ease of modification.
+
+### Key Features
+*   **Modern UI:** Sleek dark theme using `CustomTkinter`.
+*   **Vault System:** Open any folder as a workspace.
+*   **Auto-Save:** Changes are saved automatically in the background.
+*   **Markdown Support:** Edit `.md` and `.txt` files seamlessly.
 
 ### Quick Start
-1.  **Install Requirements:**
+
+**Prerequisites:** Python 3.8+
+
+1.  **Install Dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
-2.  **Run the App:**
+
+2.  **Launch the App:**
     ```bash
     python acropad.py
     ```
 
 ---
 
-## 2. Advanced Version (Flutter + Rust)
+## ⚡ Advanced Edition (Flutter + Rust)
 
-A professional-grade implementation designed for high performance and scalability.
-- **Frontend:** Flutter (Dart)
-- **Backend:** Rust (via `flutter_rust_bridge`)
+Engineered for scalability and performance. This version demonstrates a production-grade architecture using the **Flutter Rust Bridge (FRB)** to offload heavy I/O tasks to a native Rust backend.
+
+### Architecture
+*   **Frontend:** Flutter (Dart) using the **BLoC** pattern for predictable state management.
+*   **Backend:** Rust crate handling file system operations, directory scanning, and text processing.
+*   **Communication:** `flutter_rust_bridge` v2 provides type-safe, zero-copy communication between Dart and Rust.
 
 ### Prerequisites
-- **Flutter SDK:** [Install Flutter](https://docs.flutter.dev/get-started/install)
-- **Rust Toolchain:** [Install Rust](https://www.rust-lang.org/tools/install)
-- **Flutter Rust Bridge Codegen:**
+*   [Flutter SDK](https://flutter.dev/docs/get-started/install)
+*   [Rust Toolchain](https://www.rust-lang.org/tools/install)
+*   **Codegen Tool:**
     ```bash
     cargo install flutter_rust_bridge_codegen
     ```
 
-### Setup & Run
-1.  **Navigate to the advanced directory:**
+### Build & Run
+
+1.  **Navigate to the project:**
     ```bash
     cd advanced
     ```
@@ -53,17 +63,39 @@ A professional-grade implementation designed for high performance and scalabilit
     ```
 
 3.  **Generate Rust Bindings:**
-    This step connects the Dart frontend to the Rust backend.
+    This step compiles the Rust code and generates the Dart glue code.
     ```bash
+    # Ensure ~/.cargo/bin is in your PATH
     flutter_rust_bridge_codegen generate
     ```
 
-4.  **Run the App:**
+4.  **Run (Linux Desktop):**
     ```bash
-    flutter run
+    flutter run -d linux
     ```
 
-### Architecture
-- **`lib/`**: Flutter UI code (BLoC pattern).
-- **`native/`**: Rust code for file I/O and performance-critical tasks.
-- **`native/src/api.rs`**: Defines the Rust functions exposed to Flutter.
+---
+
+## 📂 Project Structure
+
+```
+Acropad/
+├── acropad.py              # Python implementation entry point
+├── requirements.txt        # Python dependencies
+├── README.md               # Project documentation
+└── advanced/               # Flutter + Rust Project Root
+    ├── lib/                # Flutter UI & Business Logic
+    │   ├── bloc/           # State management (Vault/Editor)
+    │   ├── ui/             # Screens & Widgets
+    │   └── src/rust/       # Generated Dart-Rust bindings
+    ├── native/             # Rust Crate (Backend Logic)
+    │   └── src/api.rs      # Exposed Rust functions
+    ├── linux/              # Linux-specific runner configuration
+    └── pubspec.yaml        # Dart dependencies
+```
+
+---
+
+### License
+
+This project is open-source and available under the MIT License.
