@@ -94,7 +94,7 @@ Acropad/
     └── pubspec.yaml        # Dart dependencies
 ```
 
-Still a beta product.
+Still a beta product and need to be reviewed.
 
 ---
 
