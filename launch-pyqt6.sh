@@ -16,7 +16,7 @@ echo ""
 # Check if venv exists
 if [ ! -d "venv" ]; then
     echo "❌ Virtual environment not found. Creating one..."
-    python3 -m venv venv
+    python3 -m venv --system-site-packages venv
 fi
 
 # Activate venv
