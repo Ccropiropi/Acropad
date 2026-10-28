@@ -190,9 +190,20 @@ class AcropadApp(ctk.CTk):
         self.files_list = []
         extensions = ['*.md', '*.txt']
         
+        def is_hidden(path: Path) -> bool:
+            """Check if any part of the path is a hidden file/directory."""
+            return any(part.startswith('.') for part in path.parts)
+
         try:
             for ext in extensions:
-                self.files_list.extend(list(self.vault_path.rglob(ext)))
+                for file_path in self.vault_path.rglob(ext):
+                    # Skip hidden files and files in hidden directories
+                    try:
+                        rel_path = file_path.relative_to(self.vault_path)
+                        if not is_hidden(rel_path):
+                            self.files_list.append(file_path)
+                    except ValueError:
+                        continue
             
             self.files_list.sort()
 

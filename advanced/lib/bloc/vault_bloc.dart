@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:path/path.dart' as p;
 import '../models/vault_model.dart';
 import '../services/native_bridge.dart';
 
@@ -86,18 +87,17 @@ class VaultBloc extends Bloc<VaultEvent, VaultState> {
   }
 
   Future<void> _onCreateFile(
-    CreateFileEvent event,
-    Emitter<VaultState> emit,
-  ) async {
-    if (state.currentVault == null) return;
-    
-    try {
-      // In a real app, this would call Rust to create the file
-      // For now, we simulate it via NativeBridge if we had a createFile method,
-      // but we'll just refresh for now as a placeholder.
-      add(const RefreshVaultEvent());
-    } catch (e) {
-      emit(state.copyWith(error: 'Failed to create file: ${e.toString()}'));
+      CreateFileEvent event,
+      Emitter<VaultState> emit,
+    ) async {
+      if (state.currentVault == null) return;
+
+      try {
+        final newFilePath = p.join(state.currentVault!.path, event.fileName);
+        await NativeBridge.writeFile(newFilePath, '');
+        add(const RefreshVaultEvent());
+      } catch (e) {
+        emit(state.copyWith(error: 'Failed to create file: ${e.toString()}'));
+      }
     }
-  }
 }

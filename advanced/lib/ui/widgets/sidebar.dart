@@ -294,8 +294,9 @@ class _SidebarState extends State<Sidebar> {
             onTap: () {
               final fileName = p.basename(filePath);
               final extension = p.extension(filePath);
+              final fullPath = p.join(state.currentVault!.path, filePath);
               context.read<EditorBloc>().add(OpenFileEvent(
-                filePath: filePath,
+                filePath: fullPath,
                 fileName: fileName,
                 fileExtension: extension,
               ));
