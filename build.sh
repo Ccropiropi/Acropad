@@ -16,7 +16,6 @@ rm -rf build dist
 # --clean: Clean cache
 pyinstaller --noconfirm --onefile --windowed --clean \
     --name "acropad" \
-    --hidden-import "PyQt6.QtWebEngineCore" \
     --collect-all "markdown" \
     main.py
 

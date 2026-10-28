@@ -33,21 +33,21 @@ jobs:
     - name: Build (Linux)
       if: runner.os == 'Linux'
       run: |
-        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad" --hidden-import "PyQt6.QtWebEngineCore" --collect-all "markdown" main.py
+        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad" --collect-all "markdown" main.py
         mv dist/acropad dist/acropad-linux-x86_64
 
     # Windows Build
     - name: Build (Windows)
       if: runner.os == 'Windows'
       run: |
-        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad" --hidden-import "PyQt6.QtWebEngineCore" --collect-all "markdown" main.py
+        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad" --collect-all "markdown" main.py
         Move-Item -Path dist\acropad.exe -Destination dist\acropad-windows-x86_64.exe
 
     # macOS Build
     - name: Build (macOS)
       if: runner.os == 'macOS'
       run: |
-        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad" --hidden-import "PyQt6.QtWebEngineCore" --collect-all "markdown" main.py
+        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad" --collect-all "markdown" main.py
         mv dist/acropad.app/Contents/MacOS/acropad dist/acropad-macos-x86_64
         # Also zip the .app bundle for standard macOS distro
         cd dist && zip -r acropad-macos-app.zip acropad.app

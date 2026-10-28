@@ -35,3 +35,6 @@ advanced/pubspec.lock
 
 # Rust
 advanced/native/target/
+build/
+dist/
+*.spec
