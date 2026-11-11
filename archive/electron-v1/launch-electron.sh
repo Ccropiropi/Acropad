@@ -6,7 +6,7 @@
 set -e
 
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ELECTRON_DIR="$PROJECT_DIR/electron"
+ELECTRON_DIR="$PROJECT_DIR"
 cd "$ELECTRON_DIR"
 
 echo "================================================"

@@ -2,66 +2,93 @@ name: Build and Release
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "cleanup" ]
     tags: [ "v*" ]
+  pull_request:
+    branches: [ "main", "cleanup" ]
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Build for ${{ matrix.os }}
+  test-rust:
+    name: Native Rust Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run Native Rust Tests
+        run: cargo test --manifest-path advanced/native/Cargo.toml --verbose
+
+  build-pyqt6:
+    name: Build PyQt6 Standalone (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.12'
-        cache: 'pip'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: archive/pyqt6/requirements.txt
 
-    - name: Install Dependencies
-      run: |
-        pip install -r requirements.txt
-        pip install pyinstaller
+      - name: Install Dependencies
+        run: |
+          pip install -r archive/pyqt6/requirements.txt
+          pip install pyinstaller
 
-    # Linux Build
-    - name: Build (Linux)
-      if: runner.os == 'Linux'
-      run: |
-        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad" --collect-all "markdown" main.py
-        mv dist/acropad dist/acropad-linux-x86_64
+      # Linux Build
+      - name: Build (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          pyinstaller --noconfirm --onefile --windowed --clean \
+            --name "acropad" \
+            --collect-all "markdown" \
+            --paths "archive/pyqt6" \
+            archive/pyqt6/main.py
+          mv dist/acropad dist/acropad-linux-x86_64
 
-    # Windows Build
-    - name: Build (Windows)
-      if: runner.os == 'Windows'
-      run: |
-        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad" --collect-all "markdown" main.py
-        Move-Item -Path dist\acropad.exe -Destination dist\acropad-windows-x86_64.exe
+      # Windows Build
+      - name: Build (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          pyinstaller --noconfirm --onefile --windowed --clean `
+            --name "acropad" `
+            --collect-all "markdown" `
+            --paths "archive/pyqt6" `
+            archive\pyqt6\main.py
+          Move-Item -Path dist\acropad.exe -Destination dist\acropad-windows-x86_64.exe
 
-    # macOS Build
-    - name: Build (macOS)
-      if: runner.os == 'macOS'
-      run: |
-        pyinstaller --noconfirm --onefile --windowed --clean --name "acropad" --collect-all "markdown" main.py
-        mv dist/acropad.app/Contents/MacOS/acropad dist/acropad-macos-x86_64
-        # Also zip the .app bundle for standard macOS distro
-        cd dist && zip -r acropad-macos-app.zip acropad.app
+      # macOS Build
+      - name: Build (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          pyinstaller --noconfirm --onefile --windowed --clean \
+            --name "acropad" \
+            --collect-all "markdown" \
+            --paths "archive/pyqt6" \
+            archive/pyqt6/main.py
+          mv dist/acropad.app/Contents/MacOS/acropad dist/acropad-macos-x86_64
+          cd dist && zip -r acropad-macos-app.zip acropad.app
 
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: acropad-${{ matrix.os }}
-        path: dist/acropad-*
-        if-no-files-found: error
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: acropad-${{ matrix.os }}
+          path: dist/acropad-*
+          if-no-files-found: error
 
   release:
-    name: Create Release
-    needs: build
+    name: Create GitHub Release
+    needs: [test-rust, build-pyqt6]
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     permissions:
@@ -73,13 +100,16 @@ jobs:
           path: artifacts
           merge-multiple: true
 
-      - name: Display Downloaded Files
-        run: ls -R artifacts
+      - name: Generate Checksums
+        run: |
+          cd artifacts
+          sha256sum acropad-* > SHA256SUMS.txt
+          cat SHA256SUMS.txt
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: artifacts/*
           draft: false
-          prerelease: false
+          prerelease: true
           generate_release_notes: true

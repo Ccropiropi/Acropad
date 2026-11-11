@@ -2,20 +2,18 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 2.2.x   | :white_check_mark: |
+| < 2.2.0 | :x:                |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+If you discover a security vulnerability in Acropad, please report it privately by opening a [Security Advisory](https://github.com/Ccropiropi/Acropad/security/advisories/new) on GitHub.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Please provide:
+- A description of the vulnerability and potential impact.
+- Step-by-step reproduction instructions or a proof-of-concept.
+- Affected platform(s).
+
+We acknowledge receipt of reports within 48 hours and aim to provide fixes in the next release cycle.
