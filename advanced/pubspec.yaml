@@ -1,5 +1,5 @@
 name: acropad_advanced
-description: A high-performance Obsidian clone built with Flutter and Rust.
+description: Lightweight, local-first markdown note-taking desktop application built with Flutter and Rust.
 
 publish_to: none
 
