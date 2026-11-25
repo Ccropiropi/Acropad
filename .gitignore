@@ -38,3 +38,5 @@ advanced/native/target/
 build/
 dist/
 *.spec
+skidl*
+*.erc
